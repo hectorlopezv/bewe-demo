@@ -1,15 +1,15 @@
-import { devtools } from "zustand/middleware";
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import createBearSlice, { BearSlice } from "./globalslice";
-import createFishSlice, { FishSlice } from "./profile";
+import createGlobalSlice, { GlobalSlice } from "./globalslice";
+import createUserSlice, { UserSlice } from "./user";
 
-const useBoundStore = create<BearSlice & FishSlice>()(
+const useStoreZ = create<GlobalSlice & UserSlice>()(
   devtools(
     immer((...a) => ({
-      ...createBearSlice(...a),
-      ...createFishSlice(...a),
+      ...createGlobalSlice(...a),
+      ...createUserSlice(...a),
     }))
   )
 );
-export { useBoundStore };
+export { useStoreZ };
