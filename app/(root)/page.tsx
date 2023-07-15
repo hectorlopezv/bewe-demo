@@ -1,10 +1,7 @@
-"use client";
-import { useStoreZ } from "@/store";
+import HomePageClient from "@/components/molecules/home-page-client";
 
-export default function Home() {
-  const user = useStoreZ();
+type Props = {};
 
-  return (
-    <div>{user.isAuth ? "You are logged in" : "You are not logged in"}</div>
-  );
+export default async function Home({}: Props) {
+  return <HomePageClient />;
 }

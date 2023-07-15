@@ -17,7 +17,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -30,18 +29,17 @@ export default function Login() {
     resolver: zodResolver(SignInValidator),
   });
   const user = useStoreZ();
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data: SignInValidatorType) => {
+  const onSubmit = async (info: SignInValidatorType) => {
     try {
       setLoading(true);
 
-      const res = await axios.post("/api/sign-in", {
-        email: data.email,
-        password: data.password,
+      const {data} = await axios.post("/api/sign-in", {
+        email: info.email,
+        password: info.password,
       });
-      user.updateUser(res.data);
+      user.updateUser(data.data);
       user.updateAuth(true);
       toast.success("Login success");
     } catch (error) {

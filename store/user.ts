@@ -4,6 +4,7 @@ type User = {
   image: string;
   name: string;
   password: string;
+  location: string;
 };
 export interface UserSlice {
   user: User;
@@ -15,6 +16,7 @@ const createUserSlice: StateCreator<UserSlice, [], []> = (set, get) => ({
     image: "",
     name: "",
     password: "",
+    location: "",
   },
   updateUser: (user) => set({ user }),
 });

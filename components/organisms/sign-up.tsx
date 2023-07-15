@@ -35,17 +35,17 @@ export default function SignUp() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data: SignUpValidatorType) => {
+  const onSubmit = async (info: SignUpValidatorType) => {
     try {
       setLoading(true);
 
-      const res = await axios.post("/api/sign-up", {
-        email: data.email,
-        password: data.password,
-        fullName: data.fullName,
+      const { data } = await axios.post("/api/sign-up", {
+        email: info.email,
+        password: info.password,
+        fullName: info.fullName,
       });
 
-      user.updateUser(res.data);
+      user.updateUser(data.data);
       user.updateAuth(true);
       toast.success("Login success");
     } catch (error) {

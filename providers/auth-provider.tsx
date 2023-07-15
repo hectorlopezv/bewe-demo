@@ -17,5 +17,5 @@ export default function AuthProvider({ children }: Props) {
       router.push("/");
     }
   }, [isAuth, router]);
-  return <div>{children}</div>;
+  return <>{children}</>;
 }
